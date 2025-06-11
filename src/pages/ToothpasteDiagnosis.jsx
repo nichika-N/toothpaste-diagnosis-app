@@ -42,20 +42,13 @@ export default function ToothpasteDiagnosis() {
     }
   };
 
-  // ← ← ← 新しい診断ロジック（同点多数に対応）ここ！
   const calculateResult = () => {
     const entries = Object.entries(scores).filter(([k]) => k !== 'Total');
     const maxScore = Math.max(...entries.map(([, v]) => v));
-
-    if (maxScore === 0) {
-      return { top1: results.Total, top2: null };
-    }
+    if (maxScore === 0) return { top1: results.Total, top2: null };
 
     const topTypes = entries.filter(([, v]) => v === maxScore);
-
-    if (topTypes.length >= 3) {
-      return { top1: results.Total, top2: null };
-    }
+    if (topTypes.length >= 3) return { top1: results.Total, top2: null };
 
     const sorted = topTypes.sort((a, b) => a[0].localeCompare(b[0]));
     return {
@@ -64,41 +57,43 @@ export default function ToothpasteDiagnosis() {
     };
   };
 
-  if (isFinished) {
-    return (
-      <div className="p-6 bg-white rounded-xl shadow-md max-w-xl mx-auto mt-10">
-        <h2 className="text-xl font-bold mb-4">診断結果</h2>
-        <p className="mb-2 font-semibold">第1位：{result.top1.type}</p>
-        <p className="text-gray-700 mb-4">{result.top1.description}</p>
-        {result.top2 && (
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center px-4">
+      <div className="p-6 bg-white rounded-xl shadow-md max-w-xl w-full">
+        {isFinished ? (
           <>
-            <p className="mt-4 font-semibold">第2位：{result.top2.type}</p>
-            <p className="text-gray-700">{result.top2.description}</p>
+            <h2 className="text-xl font-bold mb-4">診断結果</h2>
+            <p className="mb-2 font-semibold">第1位：{result.top1.type}</p>
+            <p className="text-gray-700 mb-4">{result.top1.description}</p>
+            {result.top2 && (
+              <>
+                <p className="mt-4 font-semibold">第2位：{result.top2.type}</p>
+                <p className="text-gray-700">{result.top2.description}</p>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <h2 className="text-lg font-semibold mb-4">
+              質問 {step + 1}/{questions.length}
+            </h2>
+            <p className="text-gray-800 mb-6">{questions[step].text}</p>
+            <div className="flex gap-4">
+              <button
+                onClick={() => handleAnswer('yes')}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                はい
+              </button>
+              <button
+                onClick={() => handleAnswer('no')}
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+              >
+                いいえ
+              </button>
+            </div>
           </>
         )}
-      </div>
-    );
-  }
-
-  return (
-    <div className="p-6 bg-white rounded-xl shadow-md max-w-xl mx-auto mt-10">
-      <h2 className="text-lg font-semibold mb-4">
-        質問 {step + 1}/{questions.length}
-      </h2>
-      <p className="text-gray-800 mb-6">{questions[step].text}</p>
-      <div className="flex gap-4">
-        <button
-          onClick={() => handleAnswer('yes')}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          はい
-        </button>
-        <button
-          onClick={() => handleAnswer('no')}
-          className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
-        >
-          いいえ
-        </button>
       </div>
     </div>
   );

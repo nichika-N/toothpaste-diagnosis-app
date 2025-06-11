@@ -1,20 +1,24 @@
+// src/components/Home.jsx
 import { Link } from 'react-router-dom';
 
 const title = '歯磨剤診断へようこそ！';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center px-4">
-      {/* 右上に常に表示される固定ボタン */}
-      <Link
-        to="/diagnosis"
-        className="fixed top-4 right-4 px-4 py-2 bg-pink-500 text-white font-semibold rounded shadow-lg z-50 hover:bg-pink-600 transition"
-      >
-        診断へGO
-      </Link>
+    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center px-4 relative">
+      {/* 丸ボタン（右上固定） */}
+      <div className="fixed top-4 right-4 z-50">
+        <Link
+          to="/diagnosis"
+          className="w-20 h-20 bg-pink-500 hover:bg-pink-600 text-white rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-110 animate-bounce"
+        >
+          Start
+        </Link>
+      </div>
 
-      <div className="p-8 max-w-5xl w-full bg-white rounded-xl shadow-md animate-fadeIn relative">
-        {/* タイトル（ふわっと1文字ずつ） */}
+      {/* メインカード */}
+      <div className="p-8 max-w-5xl w-full bg-white rounded-xl shadow-md animate-fadeIn">
+        {/* タイトル：1文字ずつフェードイン */}
         <h1 className="text-3xl font-bold mb-6 text-center">
           {title.split('').map((char, i) => (
             <span
@@ -66,13 +70,13 @@ export default function Home() {
           </p>
         </div>
 
-        {/* 通常の診断ボタン（カードの下に配置） */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 translate-y-6">
+        {/* 長方形ボタン（カード下） */}
+        <div className="mt-8 text-center">
           <Link
             to="/diagnosis"
-            className="inline-block px-6 py-3 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 transition"
+            className="px-8 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded transition transform hover:scale-110 animate-bounce"
           >
-            診断を始める
+            診断を行う
           </Link>
         </div>
       </div>

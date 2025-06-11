@@ -3,27 +3,10 @@
 @tailwind utilities;
 
 @layer utilities {
-  /* 全体フェードイン（強調版） */
-  .animate-fadeIn {
-    animation: fadeIn 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-  }
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(50px) scale(0.95) rotate(-2deg);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) scale(1) rotate(0deg);
-    }
-  }
-
-  /* 文字ごとのフェードイン */
   .fade-char {
     opacity: 0;
     display: inline-block;
-    animation: fadeChar 0.6s ease-out forwards;
+    animation: fadeChar 0.5s ease forwards;
   }
 
   @keyframes fadeChar {
@@ -35,5 +18,30 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .animate-pop {
+    animation: popIn 0.6s ease-out;
+  }
+
+  @keyframes popIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) translateY(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .hover-bounce:hover {
+    animation: bounce 0.4s ease;
+  }
+
+  @keyframes bounce {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1); }
+    100% { transform: scale(1); }
   }
 }

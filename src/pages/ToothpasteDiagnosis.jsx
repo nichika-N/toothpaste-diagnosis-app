@@ -14,14 +14,68 @@ const questions = [
   { text: '複数の悩みを一つに絞れないと感じますか？', type: 'Total' },
 ];
 
-// 診断結果データ
 const results = {
-  C:     { type: '虫歯予防タイプ',      description: '虫歯になりやすい方向けの歯磨剤です。' },
-  Hys:   { type: '知覚過敏タイプ',      description: '冷たいものがしみる方向けのケアタイプです。' },
-  W:     { type: 'ホワイトニングタイプ',description: '歯の白さを意識する方向けです。' },
-  P:     { type: '歯周病ケアタイプ',    description: '歯ぐきのトラブルを防ぎたい方向けです。' },
-  Total: { type: 'トータルバランスタイプ',description: '総合的にバランスの取れたタイプです。' },
+  C: {
+    type: '虫歯予防タイプ',
+    description: `あなたの口腔内にぴったりな歯磨剤は
+第1位：虫歯予防タイプ
+
+虫歯になりやすい傾向にあります。
+虫歯予防のために「フッ素1450ppm配合」の歯磨剤を使いましょう。
+
+おすすめの製品
+🌟一押し🌟：DENT. Check-Up standard（ライオン歯科材料株式会社）
+・クリニカ アドバンテージ ハミガキ（ライオン）
+・GUM デンタルペースト（サンスター）
+・システマEX ハミガキ（ライオン）
+・OCH-TUNE FAST / SLOW（ライオン）`,
+    advice: `【虫歯のメカニズム】
+
+チョコやジュース、アメなどには「糖（とう）」が入っています。
+お口の中のむし歯菌が砂糖をエサにして、「酸」を出します。
+この酸が歯の表面（エナメル質）を少しずつとかしていき、穴があいてしまいます。これが虫歯です。
+
+つまり、酸が原因のためお酒や炭酸水を頻繁に飲む人も注意です。
+pH5.5以下で歯のエナメル質は溶けはじめると言われています！`
+  },
+  Hys: {
+    type: '知覚過敏タイプ',
+    description: `冷たいものやブラシの刺激で「歯がしみる」ことがある方は、このタイプに当てはまります。
+知覚過敏は、歯の表面（エナメル質）がすり減ったり、歯ぐきが下がることで起こることがあります。
+
+おすすめのケア
+・やさしい成分で知覚過敏に対応した歯磨剤を使いましょう
+・知覚過敏用歯磨剤は即効性ではなく、継続使用が大切です`
+  },
+  W: {
+    type: 'ホワイトニングタイプ',
+    description: `見た目の印象を大切にしたい方におすすめです。
+コーヒー・お茶・ワインなど色の濃い飲み物をよく飲む方は、ステイン（着色汚れ）がつきやすい傾向があります。
+
+おすすめのケア
+・ホワイトニング用の歯磨剤で毎日ケア
+・ステイン除去成分入りでも、研磨力が強すぎない製品を選ぶのがコツ`
+  },
+  P: {
+    type: '歯周病ケアタイプ',
+    description: `歯ぐきの腫れ・出血・違和感がある方はこのタイプ。
+歯周病は、放置すると歯を支える骨が溶けていく病気です。
+
+おすすめのケア
+・歯周病予防成分（IPMPやトラネキサム酸など）入りの歯磨剤を使いましょう
+・歯間ブラシやデンタルフロスの併用も効果的です`
+  },
+  Total: {
+    type: 'トータルバランスタイプ',
+    description: `お悩みが複数ある、または特定の問題に偏りがない方におすすめ。
+総合的なケアを意識して、毎日のオーラルケアを丁寧に行いましょう。
+
+おすすめのケア
+・バランス型の歯磨剤を使い、オールラウンドな予防を目指しましょう
+・定期的な歯科受診も忘れずに！`
+  }
 };
+
 
 export default function ToothpasteDiagnosis() {
   const [step, setStep]             = useState(0);
@@ -59,17 +113,51 @@ export default function ToothpasteDiagnosis() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center px-4">
-      <div className="p-6 bg-white rounded-xl shadow-md max-w-xl w-full">
+      <div className="p-8 bg-white rounded-xl shadow-md max-w-5xl w-full">
         {isFinished ? (
           <>
-            <h2 className="text-xl font-bold mb-4">診断結果</h2>
-            <p className="mb-2 font-semibold">第1位：{result.top1.type}</p>
-            <p className="text-gray-700 mb-4">{result.top1.description}</p>
+            <h2 className="text-2xl font-bold mb-6 text-center">診断結果</h2>
+
+            <div className="mb-4 text-lg">
+              <p className="font-semibold">第1位：{result.top1.type}</p>
+              <p className="text-gray-700 whitespace-pre-line">{result.top1.description}</p>
+              {result.top1.advice && (
+                <p className="text-gray-700 mt-4 whitespace-pre-line">
+
+                  {result.top1.advice}
+                </p>
+              )}
+
+              {result.top1.type === '虫歯予防タイプ' && (
+                <table className="w-full mt-6 border border-gray-300 text-sm">
+                  <thead>
+                    <tr className="bg-blue-100">
+                      <th className="border px-4 py-2 text-left">飲み物の種類</th>
+                      <th className="border px-4 py-2 text-left">pH（目安）</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td className="border px-4 py-2">コーラ</td><td className="border px-4 py-2">約2.5</td></tr>
+                    <tr><td className="border px-4 py-2">ワイン（赤・白）</td><td className="border px-4 py-2">2.9～3.5</td></tr>
+                    <tr><td className="border px-4 py-2">チューハイ・カクテル</td><td className="border px-4 py-2">3.0～4.0</td></tr>
+                    <tr><td className="border px-4 py-2">ジュース（果汁100%）</td><td className="border px-4 py-2">3.0～4.0</td></tr>
+                    <tr><td className="border px-4 py-2">スポーツドリンク</td><td className="border px-4 py-2">3.0～4.0</td></tr>
+                    <tr><td className="border px-4 py-2">炭酸ジュース（サイダーなど）</td><td className="border px-4 py-2">3.0～4.0</td></tr>
+                    <tr><td className="border px-4 py-2">ビール</td><td className="border px-4 py-2">4.0～5.0</td></tr>
+                    <tr><td className="border px-4 py-2">日本酒</td><td className="border px-4 py-2">4.5～5.0</td></tr>
+                    <tr><td className="border px-4 py-2">無糖炭酸水</td><td className="border px-4 py-2">4.5～5.0</td></tr>
+                    <tr><td className="border px-4 py-2">焼酎・ウイスキー（ストレート）</td><td className="border px-4 py-2">6.0～7.0</td></tr>
+                    <tr><td className="border px-4 py-2">水・お茶</td><td className="border px-4 py-2">6.5～7.5</td></tr>
+                  </tbody>
+                </table>
+              )}
+            </div>
+
             {result.top2 && (
-              <>
-                <p className="mt-4 font-semibold">第2位：{result.top2.type}</p>
+              <div className="mt-6 text-lg">
+                <p className="font-semibold">第2位：{result.top2.type}</p>
                 <p className="text-gray-700">{result.top2.description}</p>
-              </>
+              </div>
             )}
           </>
         ) : (

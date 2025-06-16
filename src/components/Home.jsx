@@ -5,7 +5,7 @@ const title = '歯磨剤診断へようこそ！';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white flex items-center justify-center px-4 relative">
+    <div className="min-h-screen bg-blue-100 flex items-center justify-center px-4 relative">
       {/* 丸ボタン（右上固定） */}
       <div className="fixed top-4 right-4 z-50">
         <Link
@@ -17,7 +17,8 @@ export default function Home() {
       </div>
 
       {/* メインカード */}
-      <div className="p-8 max-w-5xl w-full bg-white rounded-xl shadow-md animate-fadeIn">
+      <div className="p-8 max-w-5xl w-full bg-blue-50 rounded-xl shadow-md animate-fadeIn">
+
         {/* タイトル：1文字ずつフェードイン */}
         <h1 className="text-3xl font-bold mb-6 text-center">
           {title.split('').map((char, i) => (
@@ -52,7 +53,7 @@ export default function Home() {
 
           <h2 className="text-lg font-bold mb-2">歯磨剤には何が入っているの？</h2>
           <p className="mb-2">
-            歯磨剤の成分は、<strong>基本成分</strong>と<strong>薬用成分</strong>に分けられます。
+            歯磨剤の成分は、基本成分と薬用成分に分けられます。
           </p>
           <p className="mb-2">
             基本成分は歯磨剤の性状や香り、泡立ちなどを決めるもので、研磨剤、湿潤剤、発泡剤、粘結剤、香味剤、保存料などがあります。
@@ -61,7 +62,7 @@ export default function Home() {
             薬用成分は歯磨剤の効能や効果を決めるもので、目的に合わせて配合されます。
           </p>
           <p className="mb-4">
-            日本薬事法により、<strong>基本成分だけ</strong>の歯磨剤は「化粧品」、<strong>薬用成分が加えられている</strong>歯磨剤は「医薬部外品」と表示されます。
+            日本薬事法により、基本成分だけの歯磨剤は「化粧品」、薬用成分が加えられている歯磨剤は「医薬部外品」と表示されます。
             市販されている歯磨剤の約90％は、薬用成分の入った医薬部外品です。
           </p>
           <p>

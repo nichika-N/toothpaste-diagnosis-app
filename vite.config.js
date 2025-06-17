@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   css: {
-    postcss: './postcss.config.cjs', // ← 明示的に指定！
+    postcss: './postcss.config.cjs',
   },
+  base: '/toothpaste-diagnosis-app/', // ←ここに正しく設定
 })
-

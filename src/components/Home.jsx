@@ -32,12 +32,12 @@ export default function Home() {
           ))}
         </h1>
 
-        {/* 画像 */}
-        <img
-          src="/images/1.png"
-          alt="診断イメージ"
-          className="w-full h-60 object-cover rounded-md mb-6"
-        />
+       <img
+  src="images/1.png"
+  alt="診断イメージ"
+  className="w-full h-60 object-cover rounded-md mb-6"
+/>
+
 
         {/* 説明文 */}
         <p className="mb-4 text-gray-700 text-center text-lg font-semibold">

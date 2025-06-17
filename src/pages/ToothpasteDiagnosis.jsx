@@ -212,7 +212,7 @@ export default function ToothpasteDiagnosis() {
                     <tr><td className="border px-4 py-2">チューハイ・カクテル</td><td className="border px-4 py-2">3.0～4.0</td></tr>
                     <tr><td className="border px-4 py-2">ジュース（果汁100%）</td><td className="border px-4 py-2">3.0～4.0</td></tr>
                     <tr><td className="border px-4 py-2">スポーツドリンク</td><td className="border px-4 py-2">3.0～4.0</td></tr>
-                    <tr><td className="border px-4 py-2">炭酸ジュース（サイダーなど）</td><td className="border px-4 py-2">3.0～4.0</td></tr>
+                    <tr><td className="border px-4 py-2">炭酸ジュース</td><td className="border px-4 py-2">3.0～4.0</td></tr>
                     <tr><td className="border px-4 py-2">ビール</td><td className="border px-4 py-2">4.0～5.0</td></tr>
                     <tr><td className="border px-4 py-2">日本酒</td><td className="border px-4 py-2">4.5～5.0</td></tr>
                     <tr><td className="border px-4 py-2">無糖炭酸水</td><td className="border px-4 py-2">4.5～5.0</td></tr>
